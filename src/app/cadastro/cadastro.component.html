@@ -18,7 +18,8 @@
         required
         minlength="2"
       />
-      <span class="erro__texto" *ngIf="f.controls['nome']?.errors?.['required']"
+      <div *ngIf="(f.controls['nome']?.invalid && f.controls['nome']?.touched) || f.controls['nome']?.dirty">
+        <span class="erro__texto" *ngIf="f.controls['nome']?.errors?.['required']"
         >O campo e obrigatorio</span
       >
       <span
@@ -26,6 +27,7 @@
         *ngIf="f.controls['nome']?.errors?.['minlength']"
         >Numero de caracters não atingido</span
       >
+      </div>
     </div>
     <div class="formulario__dupla">
       <div class="formulario__campo">
