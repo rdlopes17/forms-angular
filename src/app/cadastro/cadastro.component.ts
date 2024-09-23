@@ -18,6 +18,6 @@ export class CadastroComponent implements OnInit {
     } else {
       alert("Formulário Invalido");
     }
-    console.log("Formulário enviado", form);
+    console.log("chamou cadastro", form.controls);
   }
 }
