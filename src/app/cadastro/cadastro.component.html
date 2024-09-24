@@ -37,6 +37,7 @@
           id="nascimento"
           type="date"
           class="campo__escrita"
+          ngModel
         />
       </div>
       <div class="formulario__campo">
@@ -47,12 +48,31 @@
           type="tel"
           placeholder="(XX) XXXXX-XXXX"
           class="campo__escrita"
+          ngModel
         />
       </div>
     </div>
     <div class="formulario__campo">
       <label class="campo__etiqueta" for="email">E-mail</label>
-      <input name="email" id="email" type="email" class="campo__escrita" />
+      <!-- uso com o controler de email
+       <input name="email" id="email" type="email" class="campo__escrita" ngModel required email /> -->
+      <input name="email" id="email" type="email" class="campo__escrita" ngModel required pattern="^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$" />
+      <div *ngIf="(f.controls['email']?.invalid && f.controls['email']?.touched) || f.controls['email']?.dirty">
+        <span class="erro__texto" *ngIf="f.controls['email']?.errors?.['required']"
+        >O campo de email e obrigatorio</span
+      >
+      <!-- uso com o controler de email
+       <span
+        class="erro__texto"
+        *ngIf="f.controls['email']?.errors?.['minlength']"
+        >Ocampo de email deve serguir este padrão: "exemplo@dominio.com"</span
+      > -->
+      <span
+      class="erro__texto"
+      *ngIf="f.controls['email']?.errors?.['pattern']"
+      >O campo de email deve conter o endereco completo. </span
+    >
+      </div>
     </div>
 
     <h3 class="principal__subtitulo">Endereço</h3>
